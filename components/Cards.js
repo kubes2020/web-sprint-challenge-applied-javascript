@@ -42,18 +42,12 @@ axios.get(`https://lambda-times-api.herokuapp.com/articles`).then(response => {
         const newCard = cardBuilder(itemC)
         entryPointCard.append(newCard)
     }) 
-
-
     
 })
 .catch(err =>{
     console.log('you have an error', err);
 })
 
-// axios.get(`https://lambda-times-api.herokuapp.com/articles`).then(response => {
-//     const artNames = response.data.articles;
-
-// })
 
 
 function cardBuilder(myCard){
