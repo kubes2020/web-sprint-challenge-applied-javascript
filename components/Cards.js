@@ -21,19 +21,39 @@
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
 axios.get(`https://lambda-times-api.herokuapp.com/articles`).then(response => {
-    const responseCard = response.data.articles.bootstrap;
-    responseCard.forEach( itemC =>{
+    // console.log(response.data.articles)
+    response.data.articles.bootstrap.forEach( itemC =>{
         const newCard = cardBuilder(itemC)
         entryPointCard.append(newCard)
-    })
-    
-    
-    
+    })   
+    response.data.articles.javascript.forEach( itemC =>{
+        const newCard = cardBuilder(itemC)
+        entryPointCard.append(newCard)
+    }) 
+    response.data.articles.technology.forEach( itemC =>{
+        const newCard = cardBuilder(itemC)
+        entryPointCard.append(newCard)
+    }) 
+    response.data.articles.jquery.forEach( itemC =>{
+        const newCard = cardBuilder(itemC)
+        entryPointCard.append(newCard)
+    }) 
+    response.data.articles.node.forEach( itemC =>{
+        const newCard = cardBuilder(itemC)
+        entryPointCard.append(newCard)
+    }) 
 
+
+    
 })
 .catch(err =>{
     console.log('you have an error', err);
 })
+
+// axios.get(`https://lambda-times-api.herokuapp.com/articles`).then(response => {
+//     const artNames = response.data.articles;
+
+// })
 
 
 function cardBuilder(myCard){
@@ -61,6 +81,9 @@ function cardBuilder(myCard){
     headline.textContent = myCard.headline
     imgUrl.src = myCard.authorPhoto
     name.textContent = myCard.authorName
+    card.addEventListener('click', event =>{
+        console.log(myCard.headline)
+    })
 
 return card
 
