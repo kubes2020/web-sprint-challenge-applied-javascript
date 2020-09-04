@@ -20,3 +20,67 @@
 // Add a listener for click events so that when a user clicks on a card, the headline of the article is logged to the console.
 //
 // Use your function to create a card for each of the articles, and append each card to the DOM.
+axios.get(`https://lambda-times-api.herokuapp.com/articles`).then(response => {
+    // console.log(response.data.articles)
+    response.data.articles.bootstrap.forEach( itemC =>{
+        const newCard = cardBuilder(itemC)
+        entryPointCard.append(newCard)
+    })   
+    response.data.articles.javascript.forEach( itemC =>{
+        const newCard = cardBuilder(itemC)
+        entryPointCard.append(newCard)
+    }) 
+    response.data.articles.technology.forEach( itemC =>{
+        const newCard = cardBuilder(itemC)
+        entryPointCard.append(newCard)
+    }) 
+    response.data.articles.jquery.forEach( itemC =>{
+        const newCard = cardBuilder(itemC)
+        entryPointCard.append(newCard)
+    }) 
+    response.data.articles.node.forEach( itemC =>{
+        const newCard = cardBuilder(itemC)
+        entryPointCard.append(newCard)
+    }) 
+    
+})
+.catch(err =>{
+    console.log('you have an error', err);
+})
+
+
+
+function cardBuilder(myCard){
+    const card = document.createElement('div')
+    const headline = document.createElement('div')
+    const author = document.createElement('div')
+    const imgCont = document.createElement('div')
+    const imgUrl = document.createElement('img')
+    const name = document.createElement('span')
+
+    /* structure */
+    card.append(headline)
+    card.append(author)
+    author.append(imgCont)
+    imgCont.append(imgUrl)
+    author.append(name)
+
+    /* classes */
+    card.classList.add('card')
+    headline.classList.add('headline')
+    author.classList.add('author')
+    imgCont.classList.add('img-container')
+
+    /* text & attributes */
+    headline.textContent = myCard.headline
+    imgUrl.src = myCard.authorPhoto
+    name.textContent = myCard.authorName
+    card.addEventListener('click', event =>{
+        console.log(myCard.headline)
+    })
+
+return card
+
+}
+
+const entryPointCard = document.querySelector('.cards-container')
